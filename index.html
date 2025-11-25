@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&ast;&ast;&#x8d85;&#x25ce;&#x9032;&#x968e;&#x5927;&#x8a9e;&#x8a00;&#x6a21;&#x578b;&#x6e9d;&#x901a;&#x8853;&ast;&ast;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+/* From extension marp-team.marp-vscode */
+#__marp-vscode {
+  all: revert;
+}
+
+/* Override VS Code default CSS rules reverting to initial
+   https://github.com/microsoft/vscode/blob/master/src/vs/workbench/contrib/webview/browser/pre/main.js#L53 */
+html:has(body.marp-vscode) {
+  padding: 0;
+}
+
+body.marp-vscode {
+  padding: 0;
+}
+
+body.marp-vscode img {
+  max-width: unset;
+  max-height: unset;
+}
+
+body.marp-vscode a,
+body.marp-vscode a:hover,
+body.marp-vscode code {
+  color: unset;
+}
+
+body.marp-vscode blockquote {
+  background: unset;
+  border-color: unset;
+}
+
+@media screen {
+  body.marp-vscode {
+    overflow-y: scroll;
+
+    /* stylelint-disable-next-line selector-class-pattern */
+    &.showEditorSelection {
+      --marp-vscode-highlight-color: rgb(255 255 255 / 40%);
+
+      &.vscode-light {
+        --marp-vscode-highlight-color: rgb(0 0 0 / 15%);
+      }
+
+      &.vscode-high-contrast {
+        --marp-vscode-highlight-color: rgb(255 160 0 / 70%);
+      }
+    }
+  }
+
+  #__marp-vscode [data-marp-vscode-slide-wrapper] {
+    margin: 20px;
+    position: relative;
+
+    &.code-active-line,
+    &:has(.code-active-line) {
+      &::before {
+        position: absolute;
+        content: '';
+        inset: -7px;
+        border: 3px solid var(--marp-vscode-highlight-color, transparent);
+        pointer-events: none;
+      }
+    }
+  }
+
+  #__marp-vscode svg[data-marpit-svg] {
+    box-shadow: 0 5px 10px rgb(0 0 0 / 25%);
+    display: block;
+    margin: 0;
+  }
+
+  /* Based on https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+  #code-csp-warning {
+    background-color: #444;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
+    color: white;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 12px;
+    line-height: 22px;
+    margin: 16px;
+    padding: 6px;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 0;
+    overflow-wrap: break-word;
+  }
+
+  #code-csp-warning:hover {
+    text-decoration: none;
+    background-color: #007acc;
+    box-shadow: 2px 2px 2px rgb(0 0 0 / 25%);
+  }
+}
+
+@media print {
+  body.marp-vscode #code-csp-warning {
+    display: none;
+  }
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="超進階大語言模型溝通術" style="text-align: center;"><strong>超◎進階大語言模型溝通術</strong></h1>
+            <p style="text-align: center; color: #666; margin-top: -10px;">作者：nuva_校園大使_003_顏靖衡</p>
+<h2 id="前言"><strong>前言</strong></h2>
+<ul>
+<li>本文我們會先探討大語言模型的本質，接著帶出如何 <strong>有效率地</strong> 與 LLM ( Large Language Module ) 交談 ，然後介紹各模型差異，最後進行使用心得分享。<br></li>
+<li>下列為本論壇會介紹的模型:<br><br>
+<ul>
+<li>
+<p><strong>線上</strong> :</p>
+<ul>
+<li>OpenAI-GPT-5.1</li>
+<li>Google-Gemini-3-Pro</li>
+<li>xAI-Grok-4</li>
+<li>Anthropic-Claude-Opus-4.5
+<br></li>
+</ul>
+</li>
+<li>
+<p><strong>本地</strong> :</p>
+<ul>
+<li>gpt-oss-120B
+<br><br></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="希望各位讀者能有所收穫" style="text-align: center;">希望各位讀者能有所收穫 ~~</h3>
+<h2 id=""><br><br></h2>
+<h2 id="什麼是大語言模型" style="text-align: center;"><strong>什麼是大語言模型 </strong></h2>
+<ul>
+<li>簡單來說 LLM 就是一種 <strong>電子大腦</strong> ，為什麼呢? <br>因為其構造就是以<strong>人類大腦</strong>的細微構造及傳輸方式作為雛型；在模型中運算資源的結點叫 <strong>hypothesis</strong> <strong>激發函數</strong> <br> 也就是人類的神經元，詳細介紹請參考 <strong>圖(1)</strong>:<br><br><br>
+<img src="圖片\my-image.jpg" alt="Alt" width="650" height="800"><br>
+<strong>圖(1)</strong><br>
+所以，學界也稱其為 <strong>類神經網路</strong></li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>另外，在人類的世界中常常會遇到要分析事件的狀況， 最常見的方法是撰寫計畫書。<br> 透過撰寫計畫書可以獲得 <strong>三大優點</strong>，以下將仔細說明:<br><br></p>
+<ul>
+<li><strong>明確化</strong>: 使人們能夠將抽象的想法轉化成具體可實現之方案。</li>
+<li><strong>高效率</strong>: 減少資訊不對稱性，讓溝通與執行更順暢。<br></li>
+<li><strong>提升成功率</strong>: 事先進行全面的規劃，提升專案成功的可行性。<br><br></li>
+</ul>
+<p>了解撰寫計劃書的效益，有助於我們理解如何與 LLM 溝通~</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>基於上述，聰明的你肯定能發現與 LLM 良好溝通的訣竅就是撰寫計劃書(沒發現的話，就多看幾次內文 xd)；在 AI的世界觀中，他們的計畫書叫 <strong>Prompt Engineering</strong> 中文是 <strong>提示詞工程</strong>，在下一章中我將向您解密 <strong>提示詞工程</strong>。<br></li>
+</ul>
+<h2 id="prompt-engineering" style="text-align: center;"><strong><p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mi>r</mi><mi>o</mi><mi>m</mi><mi>p</mi><mi>t</mi><mo>−</mo><mi>E</mi><mi>n</mi><mi>g</mi><mi>i</mi><mi>n</mi><mi>e</mi><mi>e</mi><mi>r</mi><mi>i</mi><mi>n</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">Prompt-Engineering</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord mathnormal">ro</span><span class="mord mathnormal">m</span><span class="mord mathnormal">pt</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">in</span><span class="mord mathnormal" style="margin-right:0.02778em;">eer</span><span class="mord mathnormal">in</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span></span></span></span></span></p>
+</strong></h2>
+<ul>
+<li>
+<p>在這個 AI 普及的世代，大家的差距已經不是在比誰的電腦性能好，變成在比誰能 <strong>下對指令</strong> 讓 AI 跑出更優的成果，而 <strong>Prompt Engineering</strong> 就是拉開彼此距離的關鍵。<br></p>
+</li>
+<li>
+<p>撰寫提示詞的標記語法有很多，常見的有 <strong>AsciiDoc</strong>、<strong>Markdown</strong>、<strong>reStructuredText</strong> 三種，以下將說明特色與用處:<br><br></p>
+<ul>
+<li><strong>AsciiDoc</strong> : 具標準化、多種原生功能 等特色，常用於建置 XML 文檔，但運用生態較小。<br></li>
+<li><strong>Markdown</strong> : 是三種語法中最簡單的語法、運用生態較廣，常用於撰寫筆記與文章，另外還能嵌入 HTML 使文章更具多樣性，但原生不支援表格、目錄、以及數學符號 等標記功能。<br></li>
+<li><strong>reStructuredText</strong> : 具標準化、擴充性高 等特色，擁有專職工具 <strong>Sphinx</strong> 進行內容轉換建立文件，常用於撰寫涵高度程式碼的說明文件(EX: Github)，但規則較生硬。<br>
+<br>以上內容參考 <a href="https://readmedium.com/lightweight-markup-asciidoc-restructuredtext-and-markdown-compared-d5a33fedcac9">Lightweight Markup: AsciiDoc, reStructuredText, and Markdown Compared</a><br><br></li>
+</ul>
+<p>雖然 AsciiDoc 與 reStructuredText 功能都非常強大，但受運用生態圈限制 以及 AI 訓練文本類型數量影響，多數 Prompt Engineering 都採用 Markdown 來寫 Prompt。</p>
+</li>
+<li>
+<p>目前大家所了解的 Markdown 是採用混和型態的語法，主要由 AsciiDoc + HTML + XML + Markdown 所構成，以下將為您說明 Markdown 語法的規則 <br><br></p>
+<blockquote>
+<p>Markdown Most Common Syntax :</p>
+</blockquote>
+<pre><code>  '#' - Heading
+  **text** - Bold
+  *text* - Italic
+  [text](url) - Link
+  ![alt](url) - Image
+  - item - List
+  &gt; quote - Blockquote
+  `code` - Code
+</code></pre>
+<blockquote>
+<p>Memory Tricks :</p>
+</blockquote>
+<pre><code>  # Hash looks like stairs, indicates heading level
+  * Asterisk means emphasis, one for italic, two for bold
+  []() Square brackets for text, parentheses for link
+  ![]() Exclamation mark for image
+  &gt; Greater-than looks like an arrow, points to quote
+</code></pre>
+<p>以上內容取材自 <a href="https://www.markdownlang.com/intro/why-use-markdown.html">Why Use Markdown?</a></p>
+</li>
+<li>
+<p>這裡提供給各位讀者幾個 prompt 的設計範例:<br></p>
+<ul>
+<li>單次動作輸出</li>
+</ul>
+<hr>
+  <br>
+  # 任務<br>
+      -解析文章<br>
+  # 任務說明<br>
+      - step1.**完整讀取**附件內容<br>
+      - step2,以不篡改文章原意為前提,向我詳細說明這篇論文的內容<br>
+  # 限制<br>
+      - 呈現內容之來源只能來自附件文章內容<br>
+<hr>
+<p><br><br></p>
+<ul>
+<li>長文本型輸出</li>
+</ul>
+<hr>
+  <br>
+  # 任務<br>
+      - 分析與總結內容 
+      <br><br>
+  # 任務說明<br>
+      - 輸出要有標題，結語要根據使用者需求去決定，並且生成的內容針對文章本身，去除網頁的廣告內容。
+      - 要先完整分析全文上下文
+      - 資料來自數據庫
+      - 不要用markdown語法輸出，以json格式輸出。
+      - 文章最後要設定"P":"1"
+      <br><br>
+  # 資訊過濾與遞補<br>
+      - 假設文章0 的 "title"、"text"、"link"其中一個不存在，則將"文章1"的資訊自動遞補"文章0"
+      - 輸出還是只能輸出5個份文章，編號從'0'開始數。 
+      <br><br>
+  # 限制<br>
+      - 若有文章出現只有標題 沒有內文，那麼這篇文章直接略過，不進行分析
+      - 以json格式輸出
+      - 每篇文章的重點整理上限為300字
+      <br><br>
+  # 範例輸出格式<br>
+      "文章0標題": "原文標題",<br>
+      "文章0重點整理"："你整理的內容" ,<br>
+      "文章0時間": "原文時間",<br>
+      "文章0連結": "原文連結",<br>
+      "文章1標題": "原文標題",<br>
+      "文章1重點整理"："你整理的內容" ,<br>
+      "文章1時間": "原文時間",<br>
+      "文章1連結": "原文連結",<br>
+      "P":"1"<br><br>
+  # 任務說明<br>
+      - 輸出要有標題，結語要根據使用者需求去決定，並且生成的內容針對文章本身，去除網頁的廣告內容。
+      - 要先完整分析全文上下文
+      - 資料來自數據庫
+      - 不要用markdown語法輸出，以json格式輸出。
+      - 文章最後要設定"P":"1"
+      <br><br>
+  # 資訊過濾與遞補<br>
+      - 假設文章0 的 "title"、"text"、"link"其中一個不存在，則將"文章1"的資訊自動遞補"文章0"
+      - 輸出還是只能輸出5個份文章，編號從'0'開始數。
+      <br><br>
+<hr>
+</li>
+</ul>
+<p><br><br></p>
+<h2 id="各模型差異" style="text-align: center;"><strong>各模型差異</strong></h2>
+<ul>
+<li>
+<p>在前面的章節我們已經摸清了 LLM 的底層邏輯，而這部分我們會以 <strong>基準測試</strong> 呈現各 LLM 能力差異， 並分享使用心得，讓各位在使用 LLM 時能更得心應手。<br><br></p>
+<ul>
+<li>
+<p>OpenAI-GPT-5.1 :</p>
+<ul>
+<li>Artificial Analysis 智慧指數 : 70</li>
+<li>Speed 每秒生成量 : 152.2 Token/s</li>
+<li>Verbosity 生成冗長度 81M Tokens</li>
+<li>特長 : 日常陪伴、社群文案創作
+<br></li>
+</ul>
+</li>
+<li>
+<p>Google-Gemini-3-Pro</p>
+<ul>
+<li>Artificial Analysis 智慧指數 : 73</li>
+<li>Speed 每秒生成量 : 138.9 Token/s</li>
+<li>Verbosity 生成冗長度 92M Tokens</li>
+<li>特長 : 科學研究、複雜邏輯運算、龐大且完整原生生態圈 (GCP)
+<br></li>
+</ul>
+</li>
+<li>
+<p>xAI-Grok-4</p>
+<ul>
+<li>Artificial Analysis 智慧指數 : 65</li>
+<li>Speed 每秒生成量 : 36.2 Token/s</li>
+<li>Verbosity 生成冗長度 120M Tokens</li>
+<li>特長 : 生成程式碼、複雜邏輯運算
+<br></li>
+</ul>
+</li>
+<li>
+<p>Claude Opus 4.5</p>
+<ul>
+<li>Artificial Analysis 智慧指數 : 70</li>
+<li>Speed 每秒生成量 : 60 Token/s</li>
+<li>Verbosity 生成冗長度 48M Tokens</li>
+<li>特長 : 生成程式碼
+<br></li>
+</ul>
+</li>
+<li>
+<p>gpt-oss-120B</p>
+<ul>
+<li>Artificial Analysis 智慧指數 : 61</li>
+<li>Speed 每秒生成量 : 338.0 Token/s</li>
+<li>Verbosity 生成冗長度 110M Tokens
+<br><br></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用心得">使用心得</h3>
+<ul>
+<li>之前 有測試過 Opus 4.5 與 Grok-4 在寫程式碼 與 debug 的功能，實驗結果表現良好，邏輯錯誤率較 GPT-5.1 少很多；</li>
+<li>如果您使用是 GPT 生成學習講義相關的任務 ，可以在 Prompt 末端加上<br>+++<br># 限制 <br>- 進行生成任務時，只能參考 <strong>數據庫</strong> 的內容<br>+++<br>這樣提示可以降低 GPT 出現幻覺機率，提高您生成內容的品質。 (以往 GPT出現幻覺的機率偏高)</li>
+<li>老實說，我已經很久沒有與 LLM 進行深層交流了 haha (′゜ω。‵) <br>
+(5個月左右)，很抱歉無法提供各位更詳細的使用心得       ｡ﾟヽ(ﾟ´Д`)ﾉﾟ｡</li>
+</ul><br>
+<h2 id="參考資料" style="text-align: center;">參考資料</h2>
+<ul>
+<li><a href="https://medium.com/@yout83048/what-is-prompt-engineering-d652f91d42f0">What Is “Prompt Engineering”?</a></li>
+<li><a href="https://medium.com/itnext/asciidoc-over-markdown-0bd9b0c7993c">AsciiDoc over Markdown</a></li>
+<li><a href="https://www.youtube.com/watch?v=zKndCikg3R0">What is an LLM (Large Language Model)?</a></li>
+<li><a href="https://www.youtube.com/watch?v=Bq-ncjOGeVU">What is Prompt Engineering? (in about a minute)</a></li>
+<li><a href="https://readmedium.com/lightweight-markup-asciidoc-restructuredtext-and-markdown-compared-d5a33fedcac9">Lightweight Markup: AsciiDoc, reStructuredText, and Markdown Compared</a></li>
+<li><a href="https://www.markdownlang.com/intro/why-use-markdown.html">Why Use Markdown?</a></li>
+<li><a href="https://artificialanalysis.ai/models/gpt-5-1">GPT-5.1 (high) Intelligence, Performance &amp; Price Analysis</a></li>
+<li><a href="https://artificialanalysis.ai/models/gemini-3-pro">Gemini 3 Pro Preview (high) Intelligence, Performance &amp; Price Analysis</a></li>
+<li><a href="https://artificialanalysis.ai/models/grok-4">Grok 4 Intelligence, Performance &amp; Price Analysis</a></li>
+<li><a href="https://artificialanalysis.ai/models/claude-opus-4-5-thinking">Claude Opus 4.5 (Reasoning) Intelligence, Performance &amp; Price Analysis</a></li>
+<li><a href="https://artificialanalysis.ai/models/gpt-oss-120b">gpt-oss-120B (high) Intelligence, Performance &amp; Price Analysis</a></li>
+<li><a href="https://www.youtube.com/watch?v=wak9CVAx4ck">CLAUDE OPUS 4.5 vs CHATGPT 5.1 vs GEMINI 3 PRO.. who is best in Science ?</a></li>
+<li><a href="https://fc.bnext.com.tw/articles/view/4263?">Grok 4.1 是什麼？最新「思考模式」、4 大應用場景全面解析！回答錯誤率從 12%→4%，我該升級嗎？</a></li>
+<li><a href="https://www.inside.com.tw/article/40121-claude-opus-4-5">Claude Opus 4.5 懶人包：價格、API 參數、工程師面試實測結果一次看</a></li>
+<li><a href="https://www.ithome.com.tw/news/172450">Anthropic最新模型Claude Opus 4.5出爐，長對話不再卡，價格調降2/3</a></li>
+<li><a href="https://www.cw.com.tw/article/5136793">OpenAI GPT-5免費啟用！功能亮點、價格方案一次看</a></li>
+<li><a href="https://maplefeather.com/article/claude-opus-45-gpt-51-gemini-3-pro-comparison">Claude Opus 4.5、GPT-5.1、Gemini 3 Pro 比較：實測後告訴你怎麼選</a></li>
+<li><a href="https://news.tvbs.com.tw/tech/3043890">ChatGPT 5.1更新！新模式差在哪？8大語氣風格與升級亮點一次看</a></li>
+</ul>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            <script async type="text/javascript">
+/* From extension marp-team.marp-vscode */
+(()=>{var G=Object.defineProperty;var J=(f,u,_)=>u in f?G(f,u,{enumerable:!0,configurable:!0,writable:!0,value:_}):f[u]=_;var r=(f,u)=>G(f,"name",{value:u,configurable:!0});var w=(f,u,_)=>J(f,typeof u!="symbol"?u+"":u,_);(()=>{var f={32:(S,E,h)=>{S.exports=h(924)},924:(S,E)=>{"use strict";var h;h={value:!0};const b={h1:{proto:r(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:r(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:r(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:r(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:r(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:r(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:r(()=>HTMLSpanElement,"proto")},pre:{proto:r(()=>HTMLElement,"proto"),style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},z="data-marp-auto-scaling-wrapper",M="data-marp-auto-scaling-svg",T="data-marp-auto-scaling-container",j=class j extends HTMLElement{constructor(){super();w(this,"container");w(this,"containerSize");w(this,"containerObserver");w(this,"svg");w(this,"svgComputedStyle");w(this,"svgPreserveAspectRatio","xMinYMid meet");w(this,"wrapper");w(this,"wrapperSize");w(this,"wrapperObserver");const n=r(s=>([t])=>{const{width:i,height:o}=t.contentRect;this[s]={width:i,height:o},this.updateSVGRect()},"e");this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(n("containerSize")),this.wrapperObserver=new ResizeObserver((...s)=>{n("wrapperSize")(...s),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`
+<style>
+  svg[${M}] { display: block; width: 100%; height: auto; vertical-align: top; }
+  span[${T}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }
+</style>
+<div ${z}>
+  <svg part="svg" ${M}>
+    <foreignObject><span ${T}><slot></slot></span></foreignObject>
+  </svg>
+</div>
+    `.split(/\n\s*/).join(""),this.wrapper=this.shadowRoot.querySelector(`div[${z}]`)??void 0;const n=this.svg;this.svg=this.wrapper?.querySelector(`svg[${M}]`)??void 0,this.svg!==n&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=this.svg?.querySelector(`span[${T}]`)??void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:n}=this;n&&(n.style.display="inline",requestAnimationFrame(()=>{n.style.display=""}))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(n){const s=r(()=>{const t=(()=>{const i=n.getPropertyValue("--preserve-aspect-ratio");return i?i.trim():`x${(({textAlign:o,direction:p})=>{if(o.endsWith("left"))return"Min";if(o.endsWith("right"))return"Max";if(o==="start"||o==="end"){let m=p==="rtl";return o==="end"&&(m=!m),m?"Max":"Min"}return"Mid"})(n)}YMid meet`})();t!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=t,this.updateSVGRect()),n===this.svgComputedStyle&&requestAnimationFrame(s)},"t");s()}updateSVGRect(){let n=Math.ceil(this.containerSize?.width??0);const s=Math.ceil(this.containerSize?.height??0);this.dataset.downscaleOnly!==void 0&&(n=Math.max(n,this.wrapperSize?.width??0));const t=this.svg?.querySelector(":scope > foreignObject");if(t?.setAttribute("width",`${n}`),t?.setAttribute("height",`${s}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${n} ${s}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=n<=0||s<=0?"0":""),this.container){const i=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=i.startsWith("xmid")||i.startsWith("xmax")?"auto":"0",this.container.style.marginRight=i.startsWith("xmi")?"auto":"0"}}};r(j,"s");let k=j;const F=r((d,{attrs:v={},style:n})=>class extends d{constructor(...s){super(...s);for(const[t,i]of Object.entries(v))this.hasAttribute(t)||this.setAttribute(t,i);this._shadow()}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_shadow(){if(!this.shadowRoot)try{this.attachShadow({mode:"open"})}catch(s){if(!(s instanceof Error&&s.name==="NotSupportedError"))throw s}return this.shadowRoot}_update(){const s=this._shadow();if(s){const t=n?`<style>:host { ${n} }</style>`:"";let i="<slot></slot>";const{autoScaling:o}=this.dataset;o!==void 0&&(i=`<marp-auto-scaling exportparts="svg:auto-scaling" ${o==="downscale-only"?"data-downscale-only":""}>${i}</marp-auto-scaling>`),s.innerHTML=t+i}}},"r");let L;const R=Symbol();let H;const C="marpitSVGPolyfill:setZoomFactor,",a=Symbol(),l=Symbol(),e=r(()=>{const d=navigator.vendor==="Apple Computer, Inc.",v=d?[g]:[],n={then:r(s=>(d?(async()=>{if(H===void 0){const t=document.createElement("canvas");t.width=10,t.height=10;const i=t.getContext("2d"),o=new Image(10,10),p=new Promise(m=>{o.addEventListener("load",()=>m())});o.crossOrigin="anonymous",o.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await p,i.drawImage(o,0,0),H=i.getImageData(5,5,1,1).data[3]<128}return H})().then(t=>{s?.(t?[g]:[])}):s?.([]),n),"then")};return Object.assign(v,n)},"g");let c,y;function g(d){const v=typeof d=="object"&&d.target||document,n=typeof d=="object"?d.zoom:d;window[l]||(Object.defineProperty(window,l,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",({data:t,origin:i})=>{if(i===window.origin)try{if(t&&typeof t=="string"&&t.startsWith(C)){const[,o]=t.split(","),p=Number.parseFloat(o);Number.isNaN(p)||(y=p)}}catch(o){console.error(o)}}));let s=!1;Array.from(v.querySelectorAll("svg[data-marpit-svg]"),t=>{var i,o,p,m;t.style.transform||(t.style.transform="translateZ(0)");const x=n||y||t.currentScale||1;c!==x&&(c=x,s=x);const B=t.getBoundingClientRect(),{length:Y}=t.children;for(let N=0;N<Y;N+=1){const $=t.children[N];if($.getScreenCTM){const A=$.getScreenCTM();if(A){const Z=(o=(i=$.x)===null||i===void 0?void 0:i.baseVal.value)!==null&&o!==void 0?o:0,U=(m=(p=$.y)===null||p===void 0?void 0:p.baseVal.value)!==null&&m!==void 0?m:0,X=$.children.length;for(let P=0;P<X;P+=1){const W=$.children[P];if(W.tagName==="SECTION"){const{style:D}=W;D.transformOrigin||(D.transformOrigin=`${-Z}px ${-U}px`),D.transform=`scale(${x}) matrix(${A.a}, ${A.b}, ${A.c}, ${A.d}, ${A.e-B.left}, ${A.f-B.top}) translateZ(0.0001px)`;break}}}}}}),s!==!1&&Array.from(v.querySelectorAll("iframe"),({contentWindow:t})=>{t?.postMessage(`${C}${s}`,window.origin==="null"?"*":window.origin)})}r(g,"u");function O({once:d=!1,target:v=document}={}){const n=function(s=document){if(s[a])return s[a];let t=!0;const i=r(()=>{t=!1,delete s[a]},"i");Object.defineProperty(s,a,{configurable:!0,value:i});let o=[],p=!1;(async()=>{try{o=await e()}finally{p=!0}})();const m=r(()=>{for(const x of o)x({target:s});p&&o.length===0||t&&window.requestAnimationFrame(m)},"r");return m(),i}(v);return d?(n(),()=>{}):n}r(O,"v"),c=1,y=void 0;const I=O,q=Symbol(),V=r((d=document)=>{if(typeof window>"u")throw new Error("Marp Core's browser script is valid only in browser context.");if(((t=document)=>{const i=window[R];i||customElements.define("marp-auto-scaling",k);for(const o of Object.keys(b)){const p=`marp-${o}`,m=b[o].proto();(L??(L=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is"),L))&&m!==HTMLElement?i||customElements.define(p,F(m,{style:b[o].style}),{extends:o}):(i||customElements.define(p,F(HTMLElement,b[o])),t.querySelectorAll(`${o}[is="${p}"]`).forEach(x=>{x.outerHTML=x.outerHTML.replace(new RegExp(`^<${o}`,"i"),`<${p}`).replace(new RegExp(`</${o}>$`,"i"),`</${p}>`)}))}window[R]=!0})(d),d[q])return d[q];const v=O({target:d}),n=r(()=>{v(),delete d[q]},"n"),s=Object.assign(n,{cleanup:n,update:r(()=>V(d),"update")});return Object.defineProperty(d,q,{configurable:!0,value:s}),s},"y");E.browser=V,h=V,h=I}},u={};function _(S){var E=u[S];if(E!==void 0)return E.exports;var h=u[S]={exports:{}};return f[S](h,h.exports,_),h.exports}r(_,"__webpack_require__");var K={};(()=>{"use strict";var S=_(32);const E="marp_vscode_content_section",h="data-marp-vscode-content-start-line",b="data-marp-vscode-content-end-line";function z(a){a.core.ruler.push(E,l=>{if(l.inlineMode)return;let e=null,c=0,y=0;for(const g of l.tokens)g.map&&(c=g.map[0],y=Math.max(y,...g.map)),g.type==="marpit_slide_open"&&(e&&(e.map&&e.attrSet(h,e.map[0]),e.attrSet(b,c-1)),e=g);e&&(e.map&&e.attrSet(h,e.map[0]),e.attrSet(b,y))})}r(z,"marpVSCodeContentSection");const M="marp-vscode.overflowTracker",T=r(a=>typeof a=="object"&&a!=null&&"type"in a&&a.type===M&&"overflowElements"in a&&Array.isArray(a.overflowElements),"isOverflowTrackerEvent"),C=class C{constructor(l){this.postMessage=l,this.delay=150,this.update()}update(){window.setTimeout(()=>this.detectOverflowElements(),this.delay)}cleanup(){}detectOverflowElements(){const l=[];for(const e of document.querySelectorAll(`section[${h}][${b}]`)){const c=e.scrollWidth-e.clientWidth,y=e.scrollHeight-e.clientHeight;if(c<=0&&y<=0)continue;const g=parseInt(e.getAttribute(h)||"",10),O=parseInt(e.getAttribute(b)||"",10);Number.isNaN(g)||Number.isNaN(O)||l.push({startLine:g,endLine:O})}this.postMessage(M,{overflowElements:l})}};r(C,"OverflowTracker");let k=C;function F(){let a;const l=window.cspAlerter?._messaging?.postMessage||window.styleLoadingMonitor?._poster?.postMessage,e=r(()=>{const c=document.getElementById("__marp-vscode");!!a!=!!c?(document.body.classList.toggle("marp-vscode",!!c),c?a={browser:(0,S.browser)(),overflowTracker:l?new k(l):void 0}:(a?.browser.cleanup(),a?.overflowTracker?.cleanup(),a=void 0)):(a?.browser.update(),a?.overflowTracker?.update()),a?(c&&L(c),R()):H()},"updateCallback");window.addEventListener("load",()=>window.setTimeout(e,100)),window.addEventListener("vscode.markdown.updateContent",e),e()}r(F,"preview");const L=r(a=>{a.querySelectorAll("[is]").forEach(l=>{if(l.nodeName.includes("-")||document.createElement(l.nodeName).constructor!==l.constructor)return;const{outerHTML:c}=l;l.outerHTML=c,console.debug("[marp-vscode] Custom element has been upgraded forcibly:",c.slice(0,c.indexOf(">")+1||void 0))})},"forceUpgradeCustomElements"),R=r(()=>{const a=document.querySelectorAll("style:not(#__marp-vscode-style,#_defaultStyles,[data-marp-vscode-body])"),l=document.querySelectorAll('link[rel="stylesheet"][href]:not([href*="marp-vscode"])');a.forEach(e=>{e.closest("#__marp-vscode")||(e.dataset.marpVscodeBody=e.textContent??"",e.textContent="")}),l.forEach(e=>{if(e.closest("#__marp-vscode"))return;const{href:c}=e;e.dataset.marpVscodeHref=c,e.removeAttribute("href")})},"removeStyles"),H=r(()=>{const a=document.querySelectorAll("style[data-marp-vscode-body]"),l=document.querySelectorAll("link[data-marp-vscode-href]");a.forEach(e=>{e.textContent=e.dataset.marpVscodeBody||"",delete e.dataset.marpVscodeBody}),l.forEach(e=>{e.href=e.dataset.marpVscodeHref||"",delete e.dataset.marpVscodeHref})},"restoreStyles");F()})()})();})();
+
+</script>
+
+        </body>
+        </html>
